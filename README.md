@@ -21,7 +21,7 @@ tasklist | findstr "2084"
 FoxitProtect.exe   2084 Services    0      6,412 K
 ```
 
-杀掉进程
+杀掉进程：
 ```
 taskkill /im /t /f FoxitProtect.exe 
 
