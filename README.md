@@ -29,5 +29,21 @@ taskkill /im /t /f FoxitProtect.exe
 taskkill /pid pid /t /f
 ```
 
+### 2、MYSQL查询正在执行的事务
+```
+查询正在执行的事务:
+SELECT * FROM information_schema.INNODB_TRX
+
+杀掉线程:
+kill 线程id(trx_mysql_thread_id)
+
+
+查看正在锁的事务:
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS; 
+
+查看等待锁的事务:
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
+```
+
 
 
