@@ -8,6 +8,12 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 
 ---
 
+### [问题列表_2](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems_2.md)
+- 使用IDEA出现Lombok的编译错误
+- 将已有的项目上传到Github上
+
+---
+
 ### [windows下安装软件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows.md)
 
 
