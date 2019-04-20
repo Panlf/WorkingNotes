@@ -55,7 +55,7 @@ dataDir：顾名思义就是 Zookeeper 保存数据的目录，默认情况下�
 dataLogDir：log目录, 同样可以是任意目录. 如果没有设置该参数, 将使用和dataDir相同的设置。
 clientPort：这个端口就是客户端连接 Zookeeper 服务器的端口，Zookeeper 会监听这个端口，接受客户端的访问请求。
 maxClientCnxns：限制连接到zookeeper的客户端数量，并且限制并发连接数量，它通过ip区分不同的客户端。
-initLimit：集群中的follower服务器(F)与leader服务器(L)之间初始连接时能容忍的最多心跳数（tickTime的数量）。
+initLimit：集群中的follower服务器与leader服务器之间初始连接时能容忍的最多心跳数（tickTime的数量）。
 syncLimit：集群中的follower服务器与leader服务器之间请求和应答之间能容忍的最多心跳数（tickTime的数量）。
 
 # 下面两个参数实现自动清理
