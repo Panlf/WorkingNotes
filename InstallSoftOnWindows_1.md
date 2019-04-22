@@ -47,6 +47,13 @@ D 表示的是万一集群中的 Leader服务器挂了，需要一个端口来�
 
 5、启动即可
 
+直接编写bat文件一键启动
+```
+start cmd /k D:\zookeeper\Cluster\zookeeper-3.5.2-alpha-0\bin\zkServer.cmd 
+start cmd /k D:\zookeeper\Cluster\zookeeper-3.5.2-alpha-1\bin\zkServer.cmd 
+start cmd /k D:\zookeeper\Cluster\zookeeper-3.5.2-alpha-2\bin\zkServer.cmd 
+```
+
 #### zoo.cfg的配置解释
 ```
 tickTime：这个时间是作为 Zookeeper 服务器之间或客户端与服务器之间维持心跳的时间间隔，
@@ -128,7 +135,7 @@ redis-server.exe redis.windows.conf
 
 3、安装Ruby，默认安装即可
 
-4、安装redis-3.2.2.gem，将此文件放到ruby安装目录下，cmd执行`gem install --local C:\Ruby22-x64\redis-3.2.2.gem`
+4、安装redis-xxx.gem，cmd执行`gem install redis` ，如果已经有了文件也可以直接`gem install --local C:\Ruby22-x64\redis-3.2.2.gem`
 
 5、将`redis-trib.rb`移动到redis7001目录，点击各个bat文件，启动redis。再在`redis-trib.rb`的目录下用`cmd窗口`执行`ruby redis-trib.rb create --replicas 1 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 `
 
