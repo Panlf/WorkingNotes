@@ -63,3 +63,132 @@ autopurge.purgeInterval：这个参数指定了清理频率，单位是小时，
                         默认是0，表示不开启自己清理功能。
 autopurge.snapRetainCount：这个参数和上面的参数搭配使用，这个参数指定了需要保留的文件数目。默认是保留3个。
 ```
+
+### 2、在Windows下单机部署Redis的伪集群模式
+
+首先在Windows部署Redis需要四个部分
+
+- [Redis](https://github.com/MSOpenTech/redis/releases/) - 这里使用的3.2.100版本
+- [Ruby](http://railsinstaller.org/en)运行环境 - 这里使用的2.2.4版本
+- Ruby环境下的Redis驱动Redis.xxx.gem - 运行gem install redis即可安装
+- 创建Redis集群的ruby脚本文件redis-trib.rb - 这个文件在Redis的源码包src目录下
+
+1、在一个目录(本文的目录为`D:\Redis\higher\cluster`)复制6份Redis，取名为Redis7001、Redis7002、Redis7003、Redis7004、Redis7005、Redis7006。其实只有一份也是可以的，就是在这一份中配置6份配置文件，然后用`redis-server.exe redis.windows.conf`启动不同的配置文件即可。
+
+2、配置redis.windows.conf
+```
+port 7001     
+loglevel notice   
+logfile "D:/Redis/higher/cluster/log/redis7001_log.txt"      
+appendonly yes
+appendfilename "appendonly.7001.aof"  
+cluster-enabled yes                            
+cluster-config-file nodes.7001.conf
+cluster-node-timeout 15000
+cluster-slave-validity-factor 10
+cluster-migration-barrier 1
+cluster-require-full-coverage yes
+```
+上述的配置文件在六个文件中分别修改配置，只要把7001修改成对应端口即可。
+
+配置解释
+```
+port 7001      #配置端口
+loglevel notice    #日志级别
+logfile "D:/Redis/higher/cluster/log/redis7001_log.txt" #日志文件    
+appendonly yes  # 开启aof
+appendfilename "appendonly.7001.aof"   #aof文件
+cluster-enabled yes       # 开启集群                     
+cluster-config-file nodes.7001.conf # Redis群集节点每次发生更改时自动保留群集配置（基本上为状态）的文件，以便能够 在启动时重新读取它。 该文件列出了群集中其他节点，它们的状态，持久变量等等。 由于某些消息的接收，通常会将此文件重写并刷新到磁盘上。 
+cluster-node-timeout 15000 #Redis群集节点可以不可用的最长时间，而不会将其视为失败。
+cluster-slave-validity-factor 10 # 如果设置为0，无论主设备和从设备之间的链路保持断开连接的时间长短，从设备都将尝试故障切换主设备。 如果该值为正值，则计算最大断开时间作为节点超时值乘以此选项提供的系数，如果该节点是从节点，则在主链路断开连接的时间超过指定的超时值时，它不会尝试启动故障切换。
+cluster-migration-barrier 1 # 主设备将保持连接的最小从设备数量，以便另一个从设备迁移到不受任何从设备覆盖的主设备。
+cluster-require-full-coverage yes # 如果将其设置为yes，则默认情况下，如果key的空间的某个百分比未被任何节点覆盖，则集群停止接受写入。 如果该选项设置为no，则即使只处理关于keys子集的请求，群集仍将提供查询。
+```
+
+为了启动方便在本目录下新建一个bat文件。
+
+```
+title redis-7001
+redis-server.exe redis.windows.conf
+```
+其他只要修改7001为相应端口即可，到时候点击bat文件即可。
+
+3、安装Ruby，默认安装即可
+
+4、安装redis-3.2.2.gem，将此文件放到ruby安装目录下，cmd执行`gem install --local C:\Ruby22-x64\redis-3.2.2.gem`
+
+5、将`redis-trib.rb`移动到redis7001目录，点击各个bat文件，启动redis。再在`redis-trib.rb`的目录下用`cmd窗口`执行`ruby redis-trib.rb create --replicas 1 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 `
+
+出现以下结果即可
+```
+>>> Creating cluster
+Connecting to node 127.0.0.1:7001: OK
+Connecting to node 127.0.0.1:7002: OK
+Connecting to node 127.0.0.1:7003: OK
+Connecting to node 127.0.0.1:7004: OK
+Connecting to node 127.0.0.1:7005: OK
+Connecting to node 127.0.0.1:7006: OK
+>>> Performing hash slots allocation on 6 nodes...
+Using 3 masters:
+127.0.0.1:7001
+127.0.0.1:7002
+127.0.0.1:7003
+Adding replica 127.0.0.1:7004 to 127.0.0.1:7001
+Adding replica 127.0.0.1:7005 to 127.0.0.1:7002
+Adding replica 127.0.0.1:7006 to 127.0.0.1:7003
+M: 920ca3dca787db11534656a09e3698745eca93bc 127.0.0.1:7001
+   slots:0-5460 (5461 slots) master
+M: 36bc2ce8371d1fea2d236d65f6061d3338d6cb2f 127.0.0.1:7002
+   slots:5461-10922 (5462 slots) master
+M: e8de5364d612a95fa7668950a46f6e8420e5fe15 127.0.0.1:7003
+   slots:10923-16383 (5461 slots) master
+S: 2400db5a46d462e6c8a33a2f71bef0ae788668be 127.0.0.1:7004
+   replicates 920ca3dca787db11534656a09e3698745eca93bc
+S: 7131b06ca88902d5930c12d511a3c68f447c0a71 127.0.0.1:7005
+   replicates 36bc2ce8371d1fea2d236d65f6061d3338d6cb2f
+S: 5a6ec6f760c16aea79ce1777dd1aae695216d4ec 127.0.0.1:7006
+   replicates e8de5364d612a95fa7668950a46f6e8420e5fe15
+Can I set the above configuration? (type 'yes' to accept): yes
+>>> Nodes configuration updated
+>>> Assign a different config epoch to each node
+>>> Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join..
+>>> Performing Cluster Check (using node 127.0.0.1:7001)
+M: 920ca3dca787db11534656a09e3698745eca93bc 127.0.0.1:7001
+   slots:0-5460 (5461 slots) master
+M: 36bc2ce8371d1fea2d236d65f6061d3338d6cb2f 127.0.0.1:7002
+   slots:5461-10922 (5462 slots) master
+M: e8de5364d612a95fa7668950a46f6e8420e5fe15 127.0.0.1:7003
+   slots:10923-16383 (5461 slots) master
+M: 2400db5a46d462e6c8a33a2f71bef0ae788668be 127.0.0.1:7004
+   slots: (0 slots) master
+   replicates 920ca3dca787db11534656a09e3698745eca93bc
+M: 7131b06ca88902d5930c12d511a3c68f447c0a71 127.0.0.1:7005
+   slots: (0 slots) master
+   replicates 36bc2ce8371d1fea2d236d65f6061d3338d6cb2f
+M: 5a6ec6f760c16aea79ce1777dd1aae695216d4ec 127.0.0.1:7006
+   slots: (0 slots) master
+   replicates e8de5364d612a95fa7668950a46f6e8420e5fe15
+[OK] All nodes agree about slots configuration.
+>>> Check for open slots...
+>>> Check slots coverage...
+[OK] All 16384 slots covered.
+```
+中间需要输入`yes`
+
+7、查看是否集群成功，在redis7001目录的cmd窗口执行`redis-cli.exe -c -p 7001`，输入`cluster info`，出现以下结果
+```
+127.0.0.1:7001> cluster info
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:6
+cluster_my_epoch:1
+cluster_stats_messages_sent:237
+cluster_stats_messages_received:237`
+```
