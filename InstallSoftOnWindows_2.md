@@ -31,7 +31,7 @@ RabbitMQ安装需要Erlang环境，所以需要准备RabbitMQ、Erlang两个软�
 - rabbitmqctl stop 停止RabbitMQ运行
 - rabbitmq-server -detached 重新启动RabbitMQ并在后台运行
 
-### 2、安装Kafka
+### 2、Kafka安装
 
 1、安装配置`Zookeeper`，下载[Zookeeper](https://zookeeper.apache.org/releases.html)，修改`zoo.cfg`中的`dataDir`地址，也可修改端口。
 
