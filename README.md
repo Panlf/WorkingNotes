@@ -21,5 +21,6 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 
 ### [Windows下安装软件_2](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows_2.md)
 - 1、在Windows下安装RabbitMQ
+- 2、在Windows下安装Kafka
 
 
