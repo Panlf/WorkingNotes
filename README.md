@@ -11,6 +11,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 ### [问题列表_2](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems_2.md)
 - 1、使用IDEA出现Lombok的编译错误
 - 2、将已有的项目上传到Github上
+- 3、Eclipse中不需要源码包也可查看源码
 
 ---
 
