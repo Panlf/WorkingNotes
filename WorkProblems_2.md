@@ -19,3 +19,19 @@ file - >  Setting - Compiler - Annotation Processors - Enable annotation process
 7、git pull --rebase origin master
 8、git push origin master
 ```
+
+### 3、Eclipse中不需要源码包也可查看源码
+
+今天我使用Eclipse时候，想要查看某个类的源码，但是提示我需要导入源码，这样非常麻烦，就需要一个反编译插件。
+
+Eclipse的反编译插件可以使用 - Eclipse Class Decompiler
+
+Eclipse操作
+```
+1、Help - > Eclipse Marketplace 
+2、输入Decompiler，选择Eclipse Class Decompiler安装
+3、安装完成重启Eclipse
+4、选择Window -> Preferences -> Gerenal -> Editors -> File Associations 
+5、选择File types的*.class without source 把Class Decompiler Viewer设置为默认的editors
+6、测试使用
+```
