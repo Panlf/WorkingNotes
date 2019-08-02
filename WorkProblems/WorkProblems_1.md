@@ -44,3 +44,14 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;
 查看等待锁的事务:
 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
 ```
+
+### 3、MYSQL删除数据时发生错误
+
+今天使用`delete from xxx where xxx`时候发生如下错误`The total number of locks exceeds the lock table size`，主要是因为数据表里数据太大了，缓存不够了，发生了如此错误。只要调大`innodb_buffer_pool_size`参数即可，该参数的默认值是8M。
+
+命令：
+```
+# 3G  3*1024*1024*1024
+SET GLOBAL innodb_buffer_pool_size=3221225472;
+```
+
