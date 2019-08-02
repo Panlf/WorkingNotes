@@ -5,6 +5,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 ### [问题列表_1](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/WorkProblems_1.md)
 - 1、Windows查找端口是否被占用
 - 2、MYSQL查询正在执行的事务
+- 3、MYSQL删除数据时发生错误
 
 ---
 
@@ -12,6 +13,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、使用IDEA出现Lombok的编译错误
 - 2、将已有的项目上传到Github上
 - 3、Eclipse中不需要源码包也可查看源码
+- 4、Linux下运行Jar包项目
 
 ---
 
