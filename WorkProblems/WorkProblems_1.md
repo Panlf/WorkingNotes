@@ -55,3 +55,7 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
 SET GLOBAL innodb_buffer_pool_size=3221225472;
 ```
 
+### 4、MYSQL导出每个表前几条数据
+```
+mysqldump -u用户名 -p密码 -h IP地址 -P端口 --databases 数据库名 --where="true limit 100" > test.sql
+```
