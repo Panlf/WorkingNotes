@@ -37,7 +37,7 @@ RabbitMQ安装需要Erlang环境，所以需要准备RabbitMQ、Erlang两个软�
 
 2、点击`zkServer.cmd`，启动`Zookeeper`
 
-2、下载[Kafka](http://kafka.apache.org/downloads)，解压文件进入`config`文件夹，修改`erver.properties`中的日志地址
+2、下载[Kafka](http://kafka.apache.org/downloads)，解压文件进入`config`文件夹，修改`server.properties`中的日志地址
 ```
 log.dirs=D:/kafka/kafka_2.11-2.2.0/kafka-logs
 ```
