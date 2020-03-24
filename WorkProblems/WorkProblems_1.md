@@ -59,3 +59,10 @@ SET GLOBAL innodb_buffer_pool_size=3221225472;
 ```
 mysqldump -u用户名 -p密码 -h IP地址 -P端口 --databases 数据库名 --where="true limit 100" > test.sql
 ```
+
+### 5、MYSQL出现连接错误次数过多
+当连接错误次数过多时，mysql会禁止客户机连接。我们选择两种方式
+
+- `mysqladmin  -u  root  -p  flush-hosts `清除缓存
+- 修改mysql配置文件，在`[mysqld]`下面添加`max_connect_errors=1000`，然后重启MYSQL
+
