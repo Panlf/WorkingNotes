@@ -7,6 +7,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 2、MYSQL查询正在执行的事务
 - 3、MYSQL删除数据时发生错误
 - 4、MYSQL导出每个表前几条数据
+- 5、MYSQL出现连接错误次数过多
 ---
 
 ### [问题列表_2](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/WorkProblems_2.md)
