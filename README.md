@@ -17,7 +17,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 4、Linux下运行Jar包项目
 - 5、Git放弃本地修改
 - 6、Git统计代码量
-
+- 7、Git暂存部分文件
 ---
 
 ### [Windows下安装软件_1](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_1.md)
