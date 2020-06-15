@@ -98,3 +98,8 @@ git checkout . && git clean -df
 git log --author="username" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
 
 `--author="username" `根据自己的用户名修改
+
+### 7、Git暂存部分文件
+```
+git stash push <file1> <file2> <file3> [file4 ...]
+```
