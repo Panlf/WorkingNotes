@@ -1,6 +1,7 @@
 ## 问题列表_Git
 
 ### 1、Git将已有的项目上传到Github上
+
 ```
 1、在github上新建的Repository -- 跟需上传项目的项目名称一致
 2、在需上传项目的根目录在打开git，并进行以下命令
@@ -24,12 +25,22 @@ git checkout . && git clean -df
 
 ### 3、Git统计代码量
 
-
+```
 git log --author="username" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
+```
 
 `--author="username" `根据自己的用户名修改
 
 ### 4、Git暂存部分文件
+
 ```
 git stash push <file1> <file2> <file3> [file4 ...]
 ```
+
+### 5、Git拉取指定远程分支
+
+```
+git clone -b [dev] [respository]
+```
+
+dev 代表分支，respository代表远程仓库。
