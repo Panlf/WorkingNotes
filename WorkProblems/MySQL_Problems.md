@@ -37,3 +37,52 @@ mysqldump -u用户名 -p密码 -h IP地址 -P端口 --databases 数据库名 --w
 - `mysqladmin  -u  root  -p  flush-hosts `清除缓存
 - 修改mysql配置文件，在`[mysqld]`下面添加`max_connect_errors=1000`，然后重启MYSQL
 
+### 5、MYSQL多个字段拼接
+#### concat连接无NULL
+```
+select concat(1,2,3)
+```
+结果`123`
+
+#### concat连接带NULL
+```
+select concat(1,2,3,null)
+```
+结果`null`
+
+#### concat_ws连接无NULL
+```
+concat_ws(separator,str1,str2...)
+
+separator表示分隔符
+```
+
+案例
+```
+select concat_ws(':',1,2,3)
+```
+结果`1:2:3`
+
+#### concat_ws连接带NULL
+```
+select concat_ws(':',1,2,3,null)
+```
+结果`1:2:3`
+
+#### group_concat
+```
+group_concat(distinct expression
+    order by expression
+    separator sep);
+```
+案例	
+```
+SELECT 
+    GROUP_CONCAT(DISTINCT name
+        ORDER BY name ASC
+        SEPARATOR ';')
+FROM
+    test;
+```
+
+结果`zhangsan;lisi;wangwu`
