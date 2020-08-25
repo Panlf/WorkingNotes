@@ -3,10 +3,10 @@
 IT业技术迭代非常快，而且为了提高效率会出很多软件或者工具，然后我们在学习或者工作中会遇到很多问题，这里主要是记录工作或者学习过程遇到各种的问题。
 
 ### [问题列表_Git](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Git_Problems.md)
-1、Git将已有的项目上传到Github上
-2、Git放弃本地修改
-3、Git统计代码量
-4、Git暂存部分文件
+- 1、Git将已有的项目上传到Github上
+- 2、Git放弃本地修改
+- 3、Git统计代码量
+- 4、Git暂存部分文件
 ---
 
 ### [问题列表_IDE](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/IDE_Problems.md)
@@ -33,6 +33,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、在Windows下单机部署Zookeeper的伪集群模式
 - 2、在Windows下单机部署Redis的伪集群模式
 - 3、在Windows下单机部署Redis-Sentinel的模式
+---
 
 ### [Windows下安装软件_中间件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_2.md)
 - 1、在Windows下安装RabbitMQ
