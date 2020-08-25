@@ -1,35 +1,6 @@
-## 问题列表_1
+## 问题列表_MySQL
 
-### 1、Windows查找端口是否被占用
-
-今天使用`Hexo`的时候，本地`Hexo s`，然后访问`http:\\localhost:4000`，发现不能访问，猜想4000端口被占用。
-
-Widows下查找占用端口：
-```
-//查找占用端口4000
-netstat -ano | findstr "4000"  
-
-//返回
-TCP   127.0.0.1:4000  0.0.0.0:0    LISTENING       2084
-```
-
-查看进程：
-```
-tasklist | findstr "2084" 
-
-//返回
-FoxitProtect.exe   2084 Services    0      6,412 K
-```
-
-杀掉进程：
-```
-taskkill /im /t /f FoxitProtect.exe 
-
-//也可以使用pid杀
-taskkill /pid pid /t /f
-```
-
-### 2、MYSQL查询正在执行的事务
+### 1、MYSQL查询正在执行的事务
 ```
 查询正在执行的事务:
 SELECT * FROM information_schema.INNODB_TRX
@@ -45,7 +16,7 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;
 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
 ```
 
-### 3、MYSQL删除数据时发生错误
+### 2、MYSQL删除数据时发生错误
 
 今天使用`delete from xxx where xxx`时候发生如下错误`The total number of locks exceeds the lock table size`，主要是因为数据表里数据太大了，缓存不够了，发生了如此错误。只要调大`innodb_buffer_pool_size`参数即可，该参数的默认值是8M。
 
@@ -55,12 +26,12 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
 SET GLOBAL innodb_buffer_pool_size=3221225472;
 ```
 
-### 4、MYSQL导出每个表前几条数据
+### 3、MYSQL导出每个表前几条数据
 ```
 mysqldump -u用户名 -p密码 -h IP地址 -P端口 --databases 数据库名 --where="true limit 100" > test.sql
 ```
 
-### 5、MYSQL出现连接错误次数过多
+### 4、MYSQL出现连接错误次数过多
 当连接错误次数过多时，mysql会禁止客户机连接。我们选择两种方式
 
 - `mysqladmin  -u  root  -p  flush-hosts `清除缓存

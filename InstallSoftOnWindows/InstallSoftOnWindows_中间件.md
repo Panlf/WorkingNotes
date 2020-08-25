@@ -1,4 +1,4 @@
-## 在Windows下安装软件_2
+## 在Windows下安装软件_中间件
 
 ### 1、RabbitMQ安装
 
