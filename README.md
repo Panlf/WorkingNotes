@@ -16,6 +16,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 
 ### [问题列表_Linux](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Linux_Problems.md)
 - 1、Linux下运行Jar包项目
+- 2、apt-get update和upgrade的区别
 ---
 
 ### [问题列表_MySQL](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/MySQL_Problems.md)
