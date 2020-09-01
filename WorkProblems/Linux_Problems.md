@@ -46,6 +46,6 @@ ps -a  查看所有进程
 ps -ef | grep [进程名] 显示进程名
 ```
 
-### apt-get update和upgrade的区别
+### 2、apt-get update和upgrade的区别
 
 apt-get update就是访问服务器，更新可获取的软件及其版本信息，但仅仅给出一个可更新的list，具体更新需要通过apt-get upgrade，apt-get upgrade可将软件进行更新。update是更新软件列表，upgrade是更新软件。
