@@ -12,6 +12,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 ### [问题列表_IDE](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/IDE_Problems.md)
 - 1、使用IDEA出现Lombok的编译错误
 - 2、Eclipse中不需要源码包也可查看源码
+- 3、IDEA下SpringBoot项目的热部署
 ---
 
 ### [问题列表_Linux](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Linux_Problems.md)
