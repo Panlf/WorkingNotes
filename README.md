@@ -31,14 +31,17 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、Windows查找端口是否被占用
 ---
 
-### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_1.md)
+### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
 - 1、在Windows下单机部署Zookeeper的伪集群模式
 - 2、在Windows下单机部署Redis的伪集群模式
 - 3、在Windows下单机部署Redis-Sentinel的模式
 ---
 
-### [Windows下安装软件_中间件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_2.md)
+### [Windows下安装软件_中间件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_中间件.md)
 - 1、在Windows下安装RabbitMQ
 - 2、在Windows下安装Kafka
 - 3、在Windows下安装ELK
+---
 
+### [Linux下安装软件_中间件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnLinux/InstallSoftOnLinux_中间件.md)
+- 1、在Linux下安装Redis
