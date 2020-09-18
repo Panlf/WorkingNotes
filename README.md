@@ -31,6 +31,10 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、Windows查找端口是否被占用
 ---
 
+### [问题列表_Maven](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/maven_Problems.md)
+- 1、maven将第三方Jar打入Jar包
+---
+
 ### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
 - 1、在Windows下单机部署Zookeeper的伪集群模式
 - 2、在Windows下单机部署Redis的伪集群模式
