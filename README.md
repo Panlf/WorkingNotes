@@ -31,7 +31,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、Windows查找端口是否被占用
 ---
 
-### [问题列表_Maven](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/maven_Problems.md)
+### [问题列表_Maven](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Maven_Problems.md)
 - 1、maven将第三方Jar打入Jar包
 ---
 
