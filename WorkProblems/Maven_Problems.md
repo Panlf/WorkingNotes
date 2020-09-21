@@ -3,7 +3,24 @@
 ### 1、Maven将第三方Jar打入Jar包
 
 因为工作需要将一些代码打包发送到Linux服务器上进行运行，但是因为运行的代码依赖第三方库，所以需要将第三方库也打进运行的jar中。
+
+#### 第三方依赖以Jar的形式存在
+
+部署到Linux环境下需要将lib文件夹也带过去，不然提示无法到第三方Jar
 ```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <configuration>
+        <archive>
+            <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
+                <mainClass>package.MainClass</mainClass>
+            </manifest>
+        </archive>
+    </configuration>
+</plugin>
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-dependency-plugin</artifactId>
@@ -25,9 +42,11 @@
     </executions>
 </plugin>
 ```
-第一次选择上述的方式，这并不准确，这是将依赖的Jar打包lib下，其实还没有打到运行的Jar包中。
 
-需要如下配置
+
+#### 第三方依赖以Class的形式打包到Jar中
+
+Linux环境中只需要一个Jar包就可进行运行，因为第三方依赖都在Jar包中，所以文件大小也会大一点。
 ```
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
