@@ -53,3 +53,27 @@ spring.devtools.restart.poll-interval=2s
 spring.devtools.restart.quiet-period=1s
 ```
 第一个参数的时间要大于第二个参数的时间。
+
+### 4、IDEA下Gradle配置
+
+1、Gradle[官网](https://gradle.org/releases/)下载，并解压任意磁盘
+2、配置环境变量
+```
+1、GRADLE_HOME   D:\gradle-6.5
+2、GRADLE_USER_HOME  D:\gradle-6.5\data
+    GRADLE_USER_HOME如果不配置的话，会默认把jar包下载的 C:\Users\${User}\.gradle 这个目录中
+3、path中添加%GRADLE_HOME%\bin
+```
+3、cmd窗口下gradle -v测试是否配置正常
+4、IDEA配置 
+```
+settings - Build,Execution,Deployment - Build Tools - Gradle 
+    Gradle user home:D:\gradle-6.5\data    选择Gradle下载的Jar包位置
+    Use Gradle from:D:\gradle-6.5   下载解压位置
+    
+    建议选择
+    Build and run using:Intellij idea 
+    run tests using:Intellij idea
+```
+
+
