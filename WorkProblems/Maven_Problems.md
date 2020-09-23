@@ -73,3 +73,34 @@ Linux环境中只需要一个Jar包就可进行运行，因为第三方依赖都
     </executions>
 </plugin>
 ```
+
+### 2、Maven打包SpringBoot项目
+
+#### 命令行打包项目
+```
+cd 项目跟目录（和pom.xml同级）
+mvn clean package
+## 排除测试代码后进行打包
+mvn clean package  -Dmaven.test.skip=true
+```
+
+#### Eclipse打包项目
+```
+选择项目右键Run As-->Maven build...
+填入clean package  -Dmaven.test.skip=true
+```
+
+#### 运行项目
+```
+启动jar包命令
+java -jar  target/xxx.jar
+ 
+这种方式，只要控制台关闭，服务就不能访问了。所以需要在后台运行的方式来启动:(仅限linux环境)
+nohup java -jar target/xxx.jar &
+
+也可以在启动的时候选择读取不同的配置文件
+java -jar xxx.jar --spring.profiles.active=dev
+
+也可以在启动的时候设置jvm参数
+java -Xms10m -Xmx80m -jar xxx.jar &
+```
