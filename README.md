@@ -35,6 +35,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 ### [问题列表_Maven](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Maven_Problems.md)
 - 1、maven将第三方Jar打入Jar包
 - 2、Maven打SpringBoot项目
+- 3、maven命令package、install、deploy的联系与区别
 ---
 
 ### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
