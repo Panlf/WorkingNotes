@@ -29,5 +29,16 @@ taskkill /im /t /f FoxitProtect.exe
 taskkill /pid pid /t /f
 ```
 
+### 2、Windows下更改npm全局模块和cache默认安装位置
 
-
+1、在指定位置新建node_global、node_cache文件夹
+2、命令指定位置
+```
+npm config set prefix "XXX\node_global"
+npm config set cache "XXXs\node_cache"
+```
+3、配置环境变量
+```
+NODE_PATH = XXX\Node\nodejs
+PATH = %NODE_PATH%\;%NODE_PATH%\node_modules;%NODE_PATH%\node_global;
+```
