@@ -105,7 +105,7 @@ java -jar xxx.jar --spring.profiles.active=dev
 java -Xms10m -Xmx80m -jar xxx.jar &
 ```
 
-### 3、maven命令package、install、deploy的联系与区别
+### 3、Maven命令package、install、deploy的联系与区别
 
 #### 执行阶段
 ```
@@ -127,7 +127,7 @@ java -Xms10m -Xmx80m -jar xxx.jar &
     同时把打好的可执行jar包(war包或其它形式的包)布署到本地maven仓库和远程maven私服仓库
 ```
 
-### 4、maven引入本地的Jar
+### 4、Maven引入本地的Jar
 
 ```
 <dependency>
