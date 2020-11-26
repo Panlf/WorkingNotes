@@ -127,4 +127,15 @@ java -Xms10m -Xmx80m -jar xxx.jar &
     同时把打好的可执行jar包(war包或其它形式的包)布署到本地maven仓库和远程maven私服仓库
 ```
 
+### 4、maven引入本地的Jar
 
+```
+<dependency>
+    <groupId>com.plf.learn</groupId>
+    <artifactId>Encryption</artifactId>
+    <version>1.0.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/lib/Encryption-1.0.0.jar</systemPath>
+</dependency>
+```
+将Jar放到本项目下的src/main/resources/lib目录下即可。
