@@ -9,6 +9,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 4、Git暂存部分文件
 - 5、Git拉取指定远程分支
 - 6、Git删除远程仓库的文件夹，但是本地不影响
+- 7、git add不同命令
 ---
 
 ### [问题列表_IDE](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/IDE_Problems.md)
