@@ -53,3 +53,11 @@ git rm -r --cached .idea  #--cached不会把本地的.idea删除
 git commit -m 'delete .idea dir'
 git push origin master
 ```
+
+### 7、git add不同命令
+
+git添加文件的时候有git add .和git add -u和git add -A命令
+
+- git add . : 这个命令会监控工作区的状态树，会把工作区的所有变化提交到暂存区，包括修改内容的文件（modified）和新文件（new），但是不包括被删除的文件。
+- git add -u : （-update缩写）这个命令不会提交新文件（untracked file），只提交被修改（modified）和被删除（delete）文件，不提交新文件（new）。
+- git add -A : （-all缩写）是上面两个命令的集合，会提交所有的文件包括新建、修改和删除的。
