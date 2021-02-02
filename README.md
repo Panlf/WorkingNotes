@@ -29,6 +29,8 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 2、MYSQL删除数据时发生错误
 - 3、MYSQL导出每个表前几条数据
 - 4、MYSQL出现连接错误次数过多
+- 5、MYSQL多个字段拼接
+- 6、delete、truncate、drop的区别
 ---
 
 ### [问题列表_Windows](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Windows_Problems.md)
