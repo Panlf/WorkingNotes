@@ -120,3 +120,17 @@ drop > truncate >> DELETE
 ##### drop
 - drop：属于数据库DDL定义语言，同Truncate。
 - drop table table_name 立刻释放磁盘空间，不管是 InnoDB 和 MyISAM;drop语句将删除表的结构被依赖的约束(constrain)、触发器(trigger)、索引(index);依赖于该表的存储过程/函数将保留,但是变为 invalid 状态。
+
+### MySQL查询过程中更新数据表
+
+业务场景：有一张表的主键放在本表里，然后有几个字段的信息放在辅表里。现在需要根据主键的主键去辅表去查信息
+```
+# 主表字段 t_user : id,user_name,area_code,area_name
+# 辅表字段 t_area_code : id,code,name
+
+# 操作
+update t_user tu,t_area_code tac 
+set tu.area_name = tac.name
+where tu.area_code = tac.code
+
+```
