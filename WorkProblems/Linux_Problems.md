@@ -49,3 +49,17 @@ ps -ef | grep [进程名] 显示进程名
 ### 2、apt-get update和upgrade的区别
 
 apt-get update就是访问服务器，更新可获取的软件及其版本信息，但仅仅给出一个可更新的list，具体更新需要通过apt-get upgrade，apt-get upgrade可将软件进行更新。update是更新软件列表，upgrade是更新软件。
+
+### 3、测试网络端口
+因为平时需要测试服务器是否跟其他服务器的端口连通，但是有些服务器没有装telnet，所以这个功能用不了，但是有个比较简单的方式
+```
+ssh -v -p [port] [username]@[ip]
+```
+
+prot选择服务器的端口
+
+username可以随意
+
+ip选择服务器的IP
+
+如果显示`connection established`即为连通。
