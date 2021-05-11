@@ -1,4 +1,4 @@
-### Java执行Linux命名
+### Java执行Linux命令
 
 今天开发一个简单程序，需要用Java程序调用Linux命令来执行datax任务，但是`.../datax.py ..../job.json`一直不能执行成功，但是也不抛出异常。后来改变一下写法即可。
 
