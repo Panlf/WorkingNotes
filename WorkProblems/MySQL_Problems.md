@@ -121,7 +121,7 @@ drop > truncate >> DELETE
 - drop：属于数据库DDL定义语言，同Truncate。
 - drop table table_name 立刻释放磁盘空间，不管是 InnoDB 和 MyISAM;drop语句将删除表的结构被依赖的约束(constrain)、触发器(trigger)、索引(index);依赖于该表的存储过程/函数将保留,但是变为 invalid 状态。
 
-### MySQL查询过程中更新数据表
+### 7、MySQL查询过程中更新数据表
 
 业务场景：有一张表的主键放在本表里，然后有几个字段的信息放在辅表里。现在需要根据主键的主键去辅表去查信息
 ```
@@ -135,7 +135,7 @@ where tu.area_code = tac.code
 
 ```
 
-### MySQL JDBC批量执行参数
+### 8、MySQL JDBC批量执行参数
 MySQL Jdbc驱动在默认情况下会无视executeBatch()语句，把我们期望批量执行的一组sql语句拆散，一条一条地发给MySQL数据库，直接造成较低的性能。
 
 只有把rewriteBatchedStatements参数置为true, 驱动才会帮你批量执行SQL (jdbc:mysql://ip:port/db?rewriteBatchedStatements=true)。
