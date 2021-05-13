@@ -134,3 +134,10 @@ set tu.area_name = tac.name
 where tu.area_code = tac.code
 
 ```
+
+### MySQL JDBC批量执行参数
+MySQL Jdbc驱动在默认情况下会无视executeBatch()语句，把我们期望批量执行的一组sql语句拆散，一条一条地发给MySQL数据库，直接造成较低的性能。
+
+只有把rewriteBatchedStatements参数置为true, 驱动才会帮你批量执行SQL (jdbc:mysql://ip:port/db?rewriteBatchedStatements=true)。
+
+这个选项对INSERT/UPDATE/DELETE都有效，只不过对INSERT它为会预先重排一下SQL语句。
