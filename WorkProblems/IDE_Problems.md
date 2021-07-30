@@ -79,4 +79,18 @@ settings - Build,Execution,Deployment - Build Tools - Gradle
     run tests using:Intellij idea
 ```
 
+### 5、IDEA配置快捷生成serialVersionUID
 
+1、File --> Setting
+
+在Setting窗口的左侧菜单，选择Editor --> Inspections
+
+在弹出的搜索框里输入 serialVersionUID ，在搜索结构中选中 Serializable class without 'serialVersionUID'
+
+保存，设置完毕
+
+2、使用
+
+选中Serializable的类型，使用快捷键Alt+Enter，会提示Add 'serialVersionUID' field
+
+选择Add 'serialVersionUID' field，即可添加。
