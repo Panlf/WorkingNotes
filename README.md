@@ -53,6 +53,11 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 4、Maven引入本地的Jar
 ---
 
+### [问题列表_其他](ttps://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Other_Problems.md)
+- 1、获取两个特殊字符之间的字符串
+
+---
+
 ### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
 - 1、在Windows下单机部署Zookeeper的伪集群模式
 - 2、在Windows下单机部署Redis的伪集群模式
