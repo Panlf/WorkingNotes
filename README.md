@@ -53,7 +53,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 4、Maven引入本地的Jar
 ---
 
-### [问题列表_其他](ttps://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Other_Problems.md)
+### [问题列表_其他](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Other_Problems.md)
 - 1、获取两个特殊字符之间的字符串
 
 ---
