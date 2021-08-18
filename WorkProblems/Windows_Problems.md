@@ -45,9 +45,9 @@ NODE_PATH = XXX\Node\nodejs
 PATH = %NODE_PATH%\;%NODE_PATH%\node_modules;%NODE_PATH%\node_global;
 ```
 
-### 3、windows批处理
+### 3、Windows批处理
 
-Maven有时候下载的包不全的，需要删除重下。但是很多包分布在不同的地方，一个个找太麻烦，就采用windows的批处理方式
+Maven有时候下载的包不全的，需要删除重下。但是很多包分布在不同的地方，一个个找太麻烦，就采用Windows的批处理方式
 ```
 @echo off
 rem create by Panlf
