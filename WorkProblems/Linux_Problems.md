@@ -87,3 +87,12 @@ kubectl logs -f <pod_name> -n <namespace>
 ```
 
 主要是获取`<pod_name>`、`<namespace> `,然后通过这两个参数即可查看日志。
+
+### 5、实时监控Tomcat应用并重启
+
+最近发现某一台服务器上面的Tomcat应用会莫名其妙崩掉，而且找不到原因，为了服务能正常，只能先用实时监控应用，如果应用崩溃就重启的笨办法。
+
+在Linux的crontab中加入以下一条命令即可
+```
+* * * * *  root ps -ef | grep <应用名> | grep -v 'grep' || bash <应用地址>/apache-tomcat-9.0.36/bin/startup.sh
+```
