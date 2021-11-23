@@ -28,6 +28,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、Linux下运行Jar包项目
 - 2、apt-get update和upgrade的区别
 - 3、测试网络端口
+- 4、K8s查看Docker应用日志
 ---
 
 ### [问题列表_MySQL](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/MySQL_Problems.md)
