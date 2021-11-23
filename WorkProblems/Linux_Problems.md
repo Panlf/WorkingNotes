@@ -63,3 +63,27 @@ username可以随意
 ip选择服务器的IP
 
 如果显示`connection established`即为连通。
+
+### 4、K8s查看Docker应用日志
+因为我司使用K8s管理docker应用，有时候需要查看线上的日志，就需要专门的命令来查看。
+```
+# 查看所有namespace
+kubectl get ns
+
+# 查看所有pod所属的命名空间
+kubectl get pod --all-namespaces
+
+# 查看指定的命名空间的
+kubectl get pod -n <namespace>
+
+# 模糊搜索某个应用的<pod_name>
+kubectl get pod --all-namespaces | awk '{ print $2 }' | grep user
+
+# 查看某个命名空间的容器日志
+kubectl logs <pod_name> -n <namespace> 
+# 实时查看，等同于tail -f
+kubectl logs -f <pod_name> -n <namespace> 
+
+```
+
+主要是获取`<pod_name>`、`<namespace> `,然后通过这两个参数即可查看日志。
