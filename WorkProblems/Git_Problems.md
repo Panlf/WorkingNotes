@@ -9,8 +9,8 @@
 4、git add .
 5、git remote add origin [Repository地址]
 6、git commit -m "提交说明"
-7、git pull --rebase origin master
-8、git push origin master
+7、git pull --rebase origin main
+8、git push origin main
 ```
 
 ### 2、Git放弃本地修改
