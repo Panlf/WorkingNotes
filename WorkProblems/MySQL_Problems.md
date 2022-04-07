@@ -141,3 +141,14 @@ MySQL Jdbc驱动在默认情况下会无视executeBatch()语句，把我们期�
 只有把rewriteBatchedStatements参数置为true, 驱动才会帮你批量执行SQL (jdbc:mysql://ip:port/db?rewriteBatchedStatements=true)。
 
 这个选项对INSERT/UPDATE/DELETE都有效，只不过对INSERT它为会预先重排一下SQL语句。
+
+### 9、MySQL utf8mb4
+#### 什么是utf8mb4
+MySQL在5.5.3版本之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意思，专门用来兼容四字节的unicode。
+
+#### utf8与utf8mb4的联系
+utf8mb4是utf8的超集(也就是说utf8mb4包含utf8)，理论上原来使用utf8，然后将字符集修改为utf8mb4，也不会对已有的utf8编码读取产生任何问题。当然，为了节省空间，一般情况下使用utf8也就够了。
+
+####为什么要用utf8mb4
+低版本的MySQL支持的utf8编码，最大字符长度为 3 字节，如果遇到 4 字节的字符就会出现错误了。三个字节的 UTF-8 最大能编码的 Unicode 字符是 0xFFFF，也就是 Unicode 中的基本多文种平面（BMP）。也就是说，任何不在基本多文种平面的 Unicode字符，都无法使用MySQL原有的 utf8 字符集存储。
+这些不在BMP中的字符包括哪些呢？最常见的就是Emoji 表情（Emoji 是一种特殊的 Unicode 编码，常见于 ios 和 android 手机上），和一些不常用的汉字，以及任何新增的 Unicode 字符等等。
