@@ -41,6 +41,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 6、delete、truncate、drop的区别
 - 7、MySQL查询过程中更新数据表
 - 8、MySQL JDBC批量执行参数
+- 9、MySQL utf8mb4
 ---
 
 ### [问题列表_Windows](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Windows_Problems.md)
