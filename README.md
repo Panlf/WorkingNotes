@@ -30,6 +30,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 3、测试网络端口
 - 4、K8s查看Docker应用日志
 - 5、实时监控Tomcat应用并重启
+- 6、自定义命令
 ---
 
 ### [问题列表_MySQL](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/MySQL_Problems.md)
