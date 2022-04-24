@@ -96,3 +96,11 @@ kubectl logs -f <pod_name> -n <namespace>
 ```
 * * * * *  root ps -ef | grep <应用名> | grep -v 'grep' || bash <应用地址>/apache-tomcat-9.0.36/bin/startup.sh
 ```
+
+### 6、自定义命令
+
+在linux服务器中部署了datax，但是datax的前缀命令很长且是固定，所以可以使用自定义命令简化一下
+```
+> vim /root/.bashrc
+alias datax='python2 /data/soft/datax/bin/datax.py'
+```
