@@ -63,6 +63,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、正则获取两个特殊字符之间的字符串
 - 2、正则获取括号里的内容
 - 3、Datax传输生僻字
+- 4、根据分隔符分割保留分隔符
 ---
 
 ### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
