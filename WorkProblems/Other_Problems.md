@@ -30,3 +30,10 @@ java.sql.BatchUpdateException:Incorrect string value:'xF0xA1x80x84' for column '
 ```
 jdbc:mysql://ip:3306/testabc?com.mysql.jdbc.faultInjection.serverCharsetIndex=45
 ```
+
+### 4、根据分隔符分割保留分隔符
+```
+(?<=(省|市|区))
+```
+
+主要是用来切割省市区，并保留省市区整个名称。
