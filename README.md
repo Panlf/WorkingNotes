@@ -32,6 +32,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 5、实时监控Tomcat应用并重启
 - 6、自定义命令
 - 7、netstat用法
+- 8、Linux上批量修改文件的内容
 ---
 
 ### [问题列表_MySQL](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/MySQL_Problems.md)
