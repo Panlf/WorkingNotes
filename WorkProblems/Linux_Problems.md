@@ -142,3 +142,10 @@ netstat [选项]
 ```
 netstat -ntlp # 查看监听中的程序
 ```
+
+### 8、Linux上批量修改文件的内容
+
+修改当前目录下json文件中的内容替换
+```
+find . -name "*.json" | xargs perl -pi -e 's|ds=1|ds=0|g'
+```
