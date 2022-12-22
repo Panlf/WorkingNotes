@@ -91,3 +91,27 @@ if %a%==6  call D:\Redis\stand\redis-server.exe
 else exit
 ```
 
+### 4、Windows Terminal美化
+```
+# 允许运行Install-Module脚本
+set-executionpolicy remotesigned
+
+# 更新最新版本的PSReadLine，为了自动补全
+Install-Module PSReadLine -Force
+
+# 安装几个插件
+Install-Module posh-git
+Install-Module Terminal-Icons
+
+# 新建文件
+notepad $profile 
+
+# 无法执行oh-my-posh
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
+
+# 获取oh-my-posh的主题
+Get-PoshThemes
+
+# windows字体网站
+https://www.nerdfonts.com/font-downloads 字体网站
+```
