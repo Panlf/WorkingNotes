@@ -61,3 +61,18 @@ git添加文件的时候有git add .和git add -u和git add -A命令
 - git add . : 这个命令会监控工作区的状态树，会把工作区的所有变化提交到暂存区，包括修改内容的文件（modified）和新文件（new），但是不包括被删除的文件。
 - git add -u : （-update缩写）这个命令不会提交新文件（untracked file），只提交被修改（modified）和被删除（delete）文件，不提交新文件（new）。
 - git add -A : （-all缩写）是上面两个命令的集合，会提交所有的文件包括新建、修改和删除的。
+
+### 8、.gitignore添加文件失效
+
+git上传的时候，我们已经将 xxx 文件添加到了.gitignore 中，但是在push 后，远程仓库还是会显示此文件。
+
+这个是因为xxx 文件在前面已经被 git 跟踪，在这之后再添加到 .gitignore 中是无效的。
+
+所以还是需要#6的操作
+```
+git rm -r --cached 文件/文件夹名字
+
+# 去掉已经托管的文件，然后重新提交
+git add .
+git commit -m '提交说明'
+```
