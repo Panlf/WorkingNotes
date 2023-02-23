@@ -149,3 +149,20 @@ netstat -ntlp # 查看监听中的程序
 ```
 find . -name "*.json" | xargs perl -pi -e 's|ds=1|ds=0|g'
 ```
+
+### 9、ll命令根据时间排序
+
+#### 时间倒叙
+```
+ll -t
+```
+
+#### 时间正序
+```
+ll -t | tac
+```
+
+#### 取前几个
+```
+ll -t | head -n 5
+```
