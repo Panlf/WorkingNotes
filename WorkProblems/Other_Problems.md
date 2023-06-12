@@ -37,3 +37,13 @@ jdbc:mysql://ip:3306/testabc?com.mysql.jdbc.faultInjection.serverCharsetIndex=45
 ```
 
 主要是用来切割省市区，并保留省市区整个名称。
+
+### 5、利用浏览器发送POST请求
+
+```
+> fetch(new Request('[url]',{
+    method:'POST', 
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body:"id=151"
+})).then((resp)=>{console.log(resp)})
+```
