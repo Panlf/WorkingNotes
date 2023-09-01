@@ -1,5 +1,127 @@
 # Java的知识点
 
+## ThreadLocal
+### 线程池创建
+
+Java本身给我们提供了四种线程池`newCachedThreadPool`、`newFixedThreadPool`、`newScheduledThreadPool`和`newSingleThreadExecutor`。
+
+#### 线程池构造参数
+
+在理解Java本身提供的线程池的之前，先了解线程池创建参数。我们可以通过ThreadPoolExecutor来自定义构建一个线程池。
+```
+public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler) {
+    if (corePoolSize < 0 ||
+        maximumPoolSize <= 0 ||
+        maximumPoolSize < corePoolSize ||
+        keepAliveTime < 0)
+        throw new IllegalArgumentException();
+    if (workQueue == null || threadFactory == null || handler == null)
+        throw new NullPointerException();
+    this.corePoolSize = corePoolSize;
+    this.maximumPoolSize = maximumPoolSize;
+    this.workQueue = workQueue;
+    this.keepAliveTime = unit.toNanos(keepAliveTime);
+    this.threadFactory = threadFactory;
+    this.handler = handler;
+}
+```
+
+参数说明
+- corePoolSize 线程池核心线程数量，核心线程不会被回收，即使没有任务执行，也会保持空闲状态。
+- maximumPoolSize 线程池允许创建的最大的线程数，如果队列满了，并且已经创建的线程数小于最大线程数，则线程数会再创建新的线程执行任务。
+- keepAliveTime 线程活动时间，超过corePoolSize之后的临时线程的存活时间。
+- unit 线程活动时间的单位。
+- workQueue 用于保存等待执行的任务的阻塞队列。可以选择ArrayBlockQueue、LinkedBlockingQueue、SynchronousQueue、SynchronousQueue等。
+- threadFactory 用于设置创建线程的工厂，可以通过线程工厂给每个创建出来的线程设置自定义名称。
+- handler 线程池的拒绝策略。系统中的策略有AbortPolicy直接抛出异常、CallerRunsPolicy当前调用者所在线程来执行任务、DiscardOldestPolicy丢弃队列中最老的任务来执行当前任务、DiscardPolicy直接丢弃不处理，当然我们也可以自定义拒绝策略，只要实现RejectedExecutionHandler即可。
+
+#### newCachedThreadPool
+```
+public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }
+```
+可缓存的线程池，从源码中可知其核心线程数量为0，线程最大值可达到Integer的最大值，且空闲线程等待新任务的最大时间为60s，60s后将会销毁。
+
+#### newFixedThreadPool
+
+```
+public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue<Runnable>());
+    }
+
+```
+定长线程池，线程池的最大线程数等于核心线程数，并且线程池的线程不会因为闲置超时被销毁。
+
+#### newSingleThreadExecutor
+```
+public static ExecutorService newSingleThreadExecutor() {
+        return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                                    0L, TimeUnit.MILLISECONDS,
+                                    new LinkedBlockingQueue<Runnable>()));
+    }
+```
+单线程池。
+
+
+#### newScheduledThreadPool
+```
+public ScheduledThreadPoolExecutor(int corePoolSize) {
+        super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+              new DelayedWorkQueue());
+    }
+```
+定时线程池。
+
+### 任务提交
+
+我们可以使用两个方法向线程池提交任务，分别为`execute()`和`submit()`方法。
+
+#### execute()
+
+```
+void execute(Runnable command);
+```
+
+用于提交不需要返回值的任务。
+
+#### submit()
+
+```
+public Future<?> submit(Runnable task) {
+            return e.submit(task);
+}
+public <T> Future<T> submit(Callable<T> task) {
+    return e.submit(task);
+}
+public <T> Future<T> submit(Runnable task, T result) {
+    return e.submit(task, result);
+}
+```
+用于提交需要返回值的任务。
+
+
+### 关闭线程池
+
+可以通过调用线程池的shutdown()或者shutdownNow()方法来关闭线程池。原理就是遍历线程池中的工作线程，然后逐个调用线程的interrupt方法来中断线程。
+
+```
+public void shutdown() { e.shutdown(); }
+public List<Runnable> shutdownNow() { return e.shutdownNow(); }
+```
+更多源码信息可以在`ThreadPoolExecutor`类中搜寻到。
+
 ## BigDecimal
 ### float和double的精度
 
