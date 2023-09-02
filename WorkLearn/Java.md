@@ -1,12 +1,10 @@
 # Java的知识点
 
-## ThreadLocal
+## 线程池
 ### 线程池创建
-
 Java本身给我们提供了四种线程池`newCachedThreadPool`、`newFixedThreadPool`、`newScheduledThreadPool`和`newSingleThreadExecutor`。
 
 #### 线程池构造参数
-
 在理解Java本身提供的线程池的之前，先了解线程池创建参数。我们可以通过ThreadPoolExecutor来自定义构建一个线程池。
 ```
 public ThreadPoolExecutor(int corePoolSize,
@@ -85,11 +83,9 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 定时线程池。
 
 ### 任务提交
-
 我们可以使用两个方法向线程池提交任务，分别为`execute()`和`submit()`方法。
 
 #### execute()
-
 ```
 void execute(Runnable command);
 ```
@@ -97,7 +93,6 @@ void execute(Runnable command);
 用于提交不需要返回值的任务。
 
 #### submit()
-
 ```
 public Future<?> submit(Runnable task) {
             return e.submit(task);
@@ -111,9 +106,7 @@ public <T> Future<T> submit(Runnable task, T result) {
 ```
 用于提交需要返回值的任务。
 
-
 ### 关闭线程池
-
 可以通过调用线程池的shutdown()或者shutdownNow()方法来关闭线程池。原理就是遍历线程池中的工作线程，然后逐个调用线程的interrupt方法来中断线程。
 
 ```
@@ -205,3 +198,42 @@ longValue()
 intValue()
 将BigDecimal对象中的值转换成整数
 ```
+
+## ThreadLocal
+### ThreadLocal的概念
+ThreadLocal是Thread的局部变量，同一个ThreadLocal所包含的对象，在不同的Thread中有不同的副本。
+
+> ThreadLocal提供了线程内存储变量的能力，这些变量不同之处在于每一个线程读取的变量是对应的互相独立的。通过get和set方法就可以得到当前线程对应的值。
+
+原理是每个ThreadLocal内部都有一个ThreadLocalMap,他保存的key是ThreadLocal的实例，他的值是当前线程的局部变量的副本的值。
+
+### ThreadLocal的方法
+- get():返回此线程局部变量当前副本中的值
+- set(T value):将线程局部变量当前副本中的值设置为指定值
+- initialValue():返回此线程局部变量当前副本中的初始值
+- remove():移除此线程局部变量当前副本中的值
+
+### ThreadLocal的问题
+ThreadLocal操作不当会引起内存泄露问题，最主要的原因在于它的内部类ThreadLocalMap中的Entry的设计。Entry继承了WeakReference<ThreadLocal<?>>，即Entry的key是弱引用，弱引用的特点是，如果这个对象只存在弱引用，那么在下一次垃圾回收的时候必然会被清理掉。虽然key会在垃圾回收的时候被回收掉，而key对应的value是强引用，不会被清理， 这样会导致一种现象：key为null，value有值。key为空的话value是无效数据，久而久之，value累加就会导致内存泄漏。
+
+Entry的设计
+```
+static class ThreadLocalMap {
+   static class Entry extends WeakReference<ThreadLocal<?>> {
+        Object value;
+
+        Entry(ThreadLocal<?> k, Object v) {
+            super(k);
+            value = v;
+        }
+    }
+...
+}
+```
+
+ThreadLocalMap实现中已经考虑了这种情况，在调用 set()、get()、remove() 方法的时候，会清理掉 key 为 null 的记录。如果说会出现内存泄漏，那只有在出现了 key 为 null 的记录后，没有手动调用 remove() 方法，并且之后也不再调用 get()、set()、remove() 方法的情况下，才会出现内存泄露问题
+	
+
+### ThreadLocal的使用场景
+ThreadLocal 适用于每个线程需要自己独立的实例且该实例需要在多个方法中被使用，也即变量在线程间隔离而在方法或类间共享的场景。
+
