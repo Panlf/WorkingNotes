@@ -83,6 +83,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、在Windows下安装RabbitMQ
 - 2、在Windows下安装Kafka
 - 3、在Windows下安装ELK
+- 4、Mariadb配置主从复制
 ---
 
 ### [Linux下安装软件_中间件](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnLinux/InstallSoftOnLinux_中间件.md)
