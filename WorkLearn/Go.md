@@ -27,3 +27,42 @@ go env -w GOPROXY=https://goproxy.cn,direct
 - go mod edit -editing flags: 从工具或脚本中编辑go.mod,根据flag不同，作用不同
 - go mod why: 解释为什么需要包或模块
 - go mod vendor: 制作依赖项的副本，实际测试就是把包copy一份到目录下保存
+
+## Go 交叉编译 (跨平台编译)
+### Mac 下编译 Linux 和 Windows 64位可执行程序
+```
+CGO_ENABLED=0 
+GOOS=linux 
+GOARCH=amd64 
+go build main.go
+​
+CGO_ENABLED=0 
+GOOS=windows 
+GOARCH=amd64 
+go build main.go
+```
+
+###  Linux 下编译 Mac 和 Windows 64位可执行程序
+```
+CGO_ENABLED=0 
+GOOS=darwin 
+GOARCH=amd64 
+go build main.go
+​
+CGO_ENABLED=0 
+GOOS=windows 
+GOARCH=amd64 
+go build main.go
+```
+###  Windows 下编译 Mac 和 Linux 64位可执行程序
+```
+SET CGO_ENABLED=0
+SET GOOS=darwin
+SET GOARCH=amd64
+go build main.go
+​
+SET CGO_ENABLED=0
+SET GOOS=linux
+SET GOARCH=amd64
+go build main.go
+```
