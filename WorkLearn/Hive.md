@@ -90,3 +90,17 @@ public static long countData(Connection conn,String sql){
 ```
 select count(表中的字段) from 表名
 ```
+
+## 自定义函数
+```
+# 将自定义jar包放到服务器上
+/data/temp_data/low-str-1.0.0.jar
+# 使用hdfs放到hadoop上
+hdfs dfs -put /data/temp_data/low-str-1.0.0.jar /hivejar/hiveudf
+# 添加到hive
+add jar hdfs://172.12.3.9:8020/hivejar/hiveudf/low-str-1.0.0.jar;
+# 临时函数 默认是default数据库
+create temporary function low_str as 'com.hive.tutorial.udf.LowStr'; 
+# 永久函数
+create function sys.low_str as 'com.hive.tutorial.udf.LowStr' using jar 'hdfs://172.12.3.9:8020/hivejar/hiveudf/low-str-1.0.0.jar';
+```
