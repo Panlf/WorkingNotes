@@ -1,5 +1,29 @@
 # MySQL知识点
 
+## 创建索引时是否一定会锁表
+
+### 什么是 DDL？
+DDL（Data Definition Language，数据库定义语言）：用于定义和管理数据库的结构，它主要包括以下语句：
+
+- CREATE：用于创建数据库、表、索引、视图等对象。
+- ALTER：用于修改数据库、表、索引、视图等已存在的对象的结构。
+- DROP：用于删除数据库、表、索引、视图等对象。
+- TRUNCATE：用于删除表中的所有数据，但保留表的结构。
+- RENAME：用于重命名数据库、表等对象。
+
+### 什么是 DML？
+DML (Data Manipulation Language，数据操作语言) ：用于查询和修改数据，它主要包括以下语句：
+
+- INSERT：用于向表中插入新的数据行。
+- UPDATE：用于更新表中已存在的数据行。
+- DELETE：用于删除表中的数据行。
+- SELECT：用于从表中检索数据。虽然 SELECT 主要用于查询，但某些包含数据修改的扩展 SQL 功能（如 LIMIT、ORDER BY、GROUP BY 等）也属于 DML 的范畴。
+
+### 什么是 Online DDL？
+Online DDL（Online Data Definition Language，在线数据定义语言）是指在数据库运行期间执行对表结构或其他数据库对象的更改操作，而不需要中断或阻塞其他正在进行的事务和查询。
+
+在 MySQL 5.6 之前，创建索引时会锁表，但在 MySQL 5.6.7 之后，因为新增了 Online DDL 技术，所以此时在添加索引时，是可以和 DML 数据操作语言  INSERT、UPDATE、DELETE、SELECT 等命令一起执行的。
+
 ## MySQL5.7版本的安装和开启Binlog日志
 
 ### 安装
