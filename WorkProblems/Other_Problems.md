@@ -47,3 +47,14 @@ jdbc:mysql://ip:3306/testabc?com.mysql.jdbc.faultInjection.serverCharsetIndex=45
     body:"id=151"
 })).then((resp)=>{console.log(resp)})
 ```
+
+### 6、kubectl删除Evicted状态的应用
+```
+# 查看命名空间
+kubectl get namespaces
+
+# 删除Evicted状态的应用
+kubectl get pods -n <namespace> | awk '/Evicted/ {print $1}'  | xargs kubectl delete pod -n <namespace>
+
+kubectl -n <namespace>  get pods | grep Evicted |awk '{print$1}'|xargs kubectl -n <namespace> delete pods
+```
