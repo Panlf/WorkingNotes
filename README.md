@@ -72,6 +72,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 3、Datax传输生僻字
 - 4、根据分隔符分割保留分隔符
 - 5、利用浏览器发送POST请求
+- 6、kubectl删除Evicted状态的应用
 ---
 
 ### [Windows下安装软件_伪集群](https://github.com/Panlf/WorkingNotes/blob/master/InstallSoftOnWindows/InstallSoftOnWindows_伪集群.md)
