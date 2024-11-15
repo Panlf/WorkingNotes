@@ -66,3 +66,8 @@ SET GOOS=linux
 SET GOARCH=amd64
 go build main.go
 ```
+
+## Go install的程序安装位置
+使用`go env`查看`GOPATH`
+
+`go install` 的程序一般就放在第一个路径下的`bin`文件夹下
