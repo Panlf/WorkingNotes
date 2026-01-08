@@ -92,3 +92,18 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 1、在Linux下安装Redis
 - 2、在Linux下安装Hadoop
 - 3、MinIO分布式部署
+
+### [编程运维小知识点](https://github.com/Panlf/WorkingNotes/tree/master/WorkLearn)
+- 1、FFmpeg
+- 2、Go
+- 3、Gradle
+- 4、Hive
+- 5、Java
+- 6、Kafka
+- 7、Linux
+- 8、Log
+- 9、MongoDB
+- 10、MySQL
+- 11、Nginx
+- 12、PostgreSQL
+- 13、Vue
