@@ -216,3 +216,12 @@ mvn clean -Pprod -Dmaven.test.skip=true
 ```
 
 打包出来的`war包`部署到`Tomcat`的`webapps`中，启动`bin`目录下的`startup.bat`，访问`http://localhost:8080/deployment-tutorial/test/getInfo`即可看到结果。
+
+### tinyint(1)用java转化为int的坑
+今天工作中有个需求:将数据库`tinyint`转换为`int`类型,在转换过程中发现该数字被转换为`Boolean`类型了
+
+原因:在`MYSQL`官方的`JDBC文档`定义转换规则为:如果`tinyInt1isBit=true`(默认)，且`tinyInt`存储长度为1 ，则转为`java.lang.Boolean` 。
+
+否则转为`java.lang.Integer`。
+
+解决办法:在URL后面加上`:?tinyInt1isBit=false`
