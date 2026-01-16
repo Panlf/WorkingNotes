@@ -139,3 +139,8 @@ java -Xms10m -Xmx80m -jar xxx.jar &
 </dependency>
 ```
 将Jar放到本项目下的src/main/resources/lib目录下即可。
+
+### 5、将jar包安装到本地Maven仓库
+```
+mvn install:install-file -Dfile=tass-castle-2.0.1.jar -DgroupId=com.tass -DartifactId=tass-castle -Dversion=2.0.1 -Dpackaging=jar
+```
