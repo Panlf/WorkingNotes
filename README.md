@@ -65,6 +65,7 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 2、Maven打SpringBoot项目
 - 3、Maven命令package、install、deploy的联系与区别
 - 4、Maven引入本地的Jar
+- 5、将Jar包安装到本地Maven仓库
 ---
 
 ### [问题列表_其他](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Other_Problems.md)
