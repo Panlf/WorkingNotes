@@ -7,7 +7,9 @@ go env
 ```
 ### 设置GOPROXY代理
 ```
+go env -w GO111MODULE=auto
 go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOSUMDB=sum.golang.google.cn
 ```
 
 ## Go mod
