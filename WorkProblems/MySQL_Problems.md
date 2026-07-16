@@ -152,3 +152,14 @@ utf8mb4是utf8的超集(也就是说utf8mb4包含utf8)，理论上原来使用ut
 #### 为什么要用utf8mb4
 低版本的MySQL支持的utf8编码，最大字符长度为 3 字节，如果遇到 4 字节的字符就会出现错误了。三个字节的 UTF-8 最大能编码的 Unicode 字符是 0xFFFF，也就是 Unicode 中的基本多文种平面（BMP）。也就是说，任何不在基本多文种平面的 Unicode字符，都无法使用MySQL原有的 utf8 字符集存储。
 这些不在BMP中的字符包括哪些呢？最常见的就是Emoji 表情（Emoji 是一种特殊的 Unicode 编码，常见于 ios 和 android 手机上）和一些不常用的汉字以及任何新增的 Unicode 字符等等。
+
+### 10、MySQL解决字段调整自增问题
+```
+-- 1. 给所有重复为0的记录分配唯一ID
+SET @seq = 0;
+UPDATE `t_fs` SET `_F_ID_` = @seq:=@seq+1;
+
+-- 2. 修改字段为主键+自增，移除默认值
+ALTER TABLE `t_fs` 
+MODIFY COLUMN `_F_ID_` bigint(20) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT;
+```
