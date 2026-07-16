@@ -39,6 +39,8 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 9、ll命令根据时间排序
 - 10、shell脚本中特殊变量
 - 11、Linux文件夹的意义
+- 12、无效数据填充磁盘
+
 ---
 
 ### [问题列表_MySQL](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/MySQL_Problems.md)
@@ -51,6 +53,8 @@ IT业技术迭代非常快，而且为了提高效率会出很多软件或者工
 - 7、MySQL查询过程中更新数据表
 - 8、MySQL JDBC批量执行参数
 - 9、MySQL utf8mb4
+- 10、MySQL解决字段调整自增问题
+
 ---
 
 ### [问题列表_Windows](https://github.com/Panlf/WorkingNotes/blob/master/WorkProblems/Windows_Problems.md)
