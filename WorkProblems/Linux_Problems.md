@@ -195,3 +195,10 @@ ll -t | head -n 5
 - usr 主要存放一些用户的应用程序及文件，类似于windows下的program files
 - tmp 存放一些临时文件
 - var 主要存放一些经常被修改的文件，比如日志文件、电子邮件等
+
+### 12、无效数据填充磁盘
+```
+dd if=/dev/zero of=junk_5g_0.dat bs=1G count=5 status=progress
+
+dd if=/dev/zero of=junk_5g.dat bs=1GB count=5 status=progress
+```
