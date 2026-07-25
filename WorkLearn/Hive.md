@@ -1,7 +1,8 @@
 # Hive的知识点
 
 ## 分区表的操作
-```
+
+```shell
 # 查看某表的分区
 show partitions [库名].[表名];
 
@@ -15,18 +16,22 @@ drop table  [库名].[表名];
 ## 时间操作
 
 ### 获取当月的天数
-```
+
+```shell
 select dayofmonth(current_date);
 ```
 
 ### 时间转换
-```
+
+```shell
 select from_unixtime(unix_timestamp('20230328','yyyyMMdd'),'yyyyMM');
 ```
 
-## row_number()排序函数 
+## row_number()排序函数
+
 统计每个部门薪资最高的员工信息（同一个部门的员工按照薪资进行降序排序）
-``` 
+
+```text
 //如果不写asc/desc的话，默认为asc 
 第一种写法：row_number() over(partition by 一个或多个分组列 order by 一个或多个排序列 asc/desc) as 别名 
  
@@ -35,7 +40,7 @@ select from_unixtime(unix_timestamp('20230328','yyyyMMdd'),'yyyyMM');
 
 在使用`row_number() over()`函数时候，`over()`里头的分组以及排序的执行晚于 `where` 、`group by`、  `order by`的执行。
 
-```
+```shell
 select *,
 row_number() over(distribute by deptid sort by salary desc) rn from employee;
 
@@ -47,20 +52,25 @@ row_number() over(distribute by deptid sort by salary desc) rn from employee;
 ```
 
 ## Hive使用count计算数据量为0
+
 我是用阿里巴巴的数据传输工具`DataX`导入到Hive的，没有正常的操作录入的，所以Hive的元数据保存的状态的信息还是0，这样我`count`出来的数据量就是0。
 
 我们可以选择让Hive的元数据进行修复
-```
+
+```shell
 hive -e 'msck repair table [database].[tablename]'
 ```
 
 也能使用修改参数方式
-```
+
+```shell
 set hive.compute.query.using.stats=false;
 ```
+
 这样查询语句就不会走元数据信息，会使用`mapreduce`查询数据。
 
 使用Jdbc可以用以下方式
+
 ```java
 public static long countData(Connection conn,String sql){
     Statement st = null;
@@ -87,12 +97,14 @@ public static long countData(Connection conn,String sql){
 ```
 
 还可以使用以下投机的方式
-```
+
+```shell
 select count(表中的字段) from 表名
 ```
 
 ## 自定义函数
-```
+
+```shell
 # 将自定义jar包放到服务器上
 /data/temp_data/low-str-1.0.0.jar
 # 使用hdfs放到hadoop上

@@ -1,6 +1,7 @@
 # PostgreSQL
 
 ## 查询某表的属性
+
 ```sql
 SELECT
 c.relname 表名称,
@@ -46,7 +47,8 @@ ALTER sequence [序列名] restart with 1
 ```
 
 ## 死锁和解锁
-```
+
+```text
 查询是否锁表了
     select oid from pg_class where relname=tablename
     select pid from pg_locks where relation=oid
@@ -55,12 +57,14 @@ ALTER sequence [序列名] restart with 1
 ```
 
 通过上述的方法顺利解决我的锁表问题。不过通过百度，还看到别人有另一种的解决方式。
-```
+
+```text
 检索出死锁进程的ID
     select * from pg_stat_activity where wait_event_type = 'Lock';
 如果查询到了pid，表示有死锁进程，则需要杀掉解锁进程
     select pg_terminate_backend('pid')
 ```
+
 - *9.6 版本之后 `pg_stat_activity`视图的 `waiting`字段被 `wait_event_type`和 `wait_event`字段取代*
 - *如果 `pg_stat_activity` 没有记录，可以查询 `pg_locks` 这个表中是否有锁定的记录。*
 - *`pg_terminate_backend()` 也可以用 `pg_cancle_backend()` 代替。*

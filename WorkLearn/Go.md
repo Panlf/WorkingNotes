@@ -1,26 +1,34 @@
 # Go语言知识点
 
 ## 环境配置
+
 ### 查看Go的环境变量
-```
+
+```shell
 go env
 ```
+
 ### 设置GOPROXY代理
-```
+
+```shell
 go env -w GO111MODULE=auto
 go env -w GOPROXY=https://goproxy.cn,direct
 go env -w GOSUMDB=sum.golang.google.cn
 ```
 
 ## Go mod
+
 ### go.mod说明
+
 用来管理包的说明文件,现阶段非常简单,文件内一共四种指令
+
 - module: 模块名称
 - require: 依赖包列表以及版本
 - exclude: 禁止依赖包列表(仅在当前模块为主模块时生效)
 - replace: 替换依赖包列表(仅在当前模块为主模块时生效)
 
 ### go mod常用命令
+
 - go help mode: 查看帮助信息,可以查询下面的命令功能
 - go mod tidy: 添加缺失的模块,移除未使用的模块
 - go mod verify: 验证依赖项是否达到预期目的,没问题的返回值 all modules verified
@@ -31,8 +39,10 @@ go env -w GOSUMDB=sum.golang.google.cn
 - go mod vendor: 制作依赖项的副本，实际测试就是把包copy一份到目录下保存
 
 ## Go 交叉编译 (跨平台编译)
+
 ### Mac 下编译 Linux 和 Windows 64位可执行程序
-```
+
+```shell
 CGO_ENABLED=0 
 GOOS=linux 
 GOARCH=amd64 
@@ -44,8 +54,9 @@ GOARCH=amd64
 go build main.go
 ```
 
-###  Linux 下编译 Mac 和 Windows 64位可执行程序
-```
+### Linux 下编译 Mac 和 Windows 64位可执行程序
+
+```shell
 CGO_ENABLED=0 
 GOOS=darwin 
 GOARCH=amd64 
@@ -56,8 +67,10 @@ GOOS=windows
 GOARCH=amd64 
 go build main.go
 ```
-###  Windows 下编译 Mac 和 Linux 64位可执行程序
-```
+
+### Windows 下编译 Mac 和 Linux 64位可执行程序
+
+```shell
 SET CGO_ENABLED=0
 SET GOOS=darwin
 SET GOARCH=amd64
@@ -70,6 +83,7 @@ go build main.go
 ```
 
 ## Go install的程序安装位置
+
 使用`go env`查看`GOPATH`
 
 `go install` 的程序一般就放在第一个路径下的`bin`文件夹下

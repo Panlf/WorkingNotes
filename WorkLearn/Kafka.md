@@ -1,6 +1,7 @@
 # Kafka知识点
 
 ## 基础命令行命令
+
 ```shell
 # 查看topic
 bin/kafka-topics.sh --bootstrap-server [ip]:9092 --list

@@ -1,114 +1,23 @@
-## 在Windows下安装软件_中间件
+# Mariadb配置主从复制
 
-### 1、RabbitMQ安装
-
-RabbitMQ安装需要Erlang环境，所以需要准备RabbitMQ、Erlang两个软件，两个软件都可以在官网下载。
-
-- [RabbitMQ](https://www.rabbitmq.com/download.html)
-- [Erlang](http://www.erlang.org/downloads)
-
-1、Erlang安装，按照提示安装即可
-
-2、配置Erlang环境变量，新建ERLANG_HOME为D:\erl10.3，添加到path为%ERLANG_HOME%/bin;
-
-3、在cmd下输入erl即可查看是否配置成功
-
-3、安装RabbitMQ，按照提示安装即可
-
-4、进入RabbitMQ的sbin目录-D:\RabbitMQ Server\rabbitmq_server-3.7.14\sbin
-
-5、在此cmd下输入rabbitmq-server 启动RabbitMQ服务
-
-6、继续在cmd下输入rabbitmq-plugins.bat enable rabbitmq_management 开启可视化插件
-
-7、访问127.0.0.1:15672即可访问，用户名和密码都是guest
-
-#### 其他小点
-- rabbitmq-plugins list 查看已经安装的插件
-- rabbitmq-plugins.bat disable rabbitmq_management 禁用可视化插件
-- rabbitmq-plugins.bat enable rabbitmq_management 启用可视化插件
-- rabbitmqctl status 检查RabbitMQ运行状态
-- rabbitmqctl stop 停止RabbitMQ运行
-- rabbitmq-server -detached 重新启动RabbitMQ并在后台运行
-
-### 2、Kafka安装
-
-1、安装配置`Zookeeper`，下载[Zookeeper](https://zookeeper.apache.org/releases.html)，修改`zoo.cfg`中的`dataDir`地址，也可修改端口。
-
-2、点击`zkServer.cmd`，启动`Zookeeper`
-
-2、下载[Kafka](http://kafka.apache.org/downloads)，解压文件进入`config`文件夹，修改`server.properties`中的日志地址
-```
-log.dirs=D:/kafka/kafka_2.11-2.2.0/kafka-logs
-```
-
-3、修改zookeeper.properties
-```
-dataDir=D:/kafka/kafka_2.11-2.2.0/data
-clientPort=127.0.0.1:2181
-```
-
-4、在kafka目录(D:\kafka\kafka_2.11-2.2.0)中写启动文件
-
-startkafka.bat
-```
-.\bin\windows\kafka-server-start.bat .\config\server.properties
-```
-点击上述bat文件即可，前提是Zookeeper已经启动
-
-### 3、ELK安装
-
-ELK即Elasticsearch、Logstash、 Kibana，在windows下安装比较简单，下载解压即可，不过使用需要具有Java环境，目前官网是7版本需要1.8以上Jdk。
-
-1、[官网下载](https://www.elastic.co/cn/downloads/)
-
-2、下载Elasticsearch并解压，启动`\Elasticesarch\bin\elasticsearch.bat`，然后访问`localhost:9200`，观察启动成功
-
-3、下载Logstash，并在`\logstash\bin`新建`logstash.conf`。这里我是监控Nginx日志，所以以下配置文件是关于监控Nginx日志
-```
-input {  
-	file {
-		path => "D:/Nginx/nginx-1.14.1-images/logs/*.log"
-		start_position => "beginning"
-        ignore_older => 0
-		type => "nginx_log"
-	}
-}
-
-filter{  
-  
-}
-
-output {
-
-	elasticsearch {     
-		hosts => ["127.0.0.1:9200"]
-	}
-	stdout {codec => rubydebug}
-}
-```
-配置完毕启动` logstash -f logstash.conf >> C:\Users\Panlf\Desktop\log.txt `， 因为有时候配置文件错误会导致启动不成功，所以我自己会在命令结束后添加信息到日志文件中。之后访问`localhost:9600`
-
-4、下载Kibana，并启动`\kibana\bin\kibana.bat`，访问`localhost:5601`，并配置`index-patterns`即可观察到可视化的Nginx日志数据。
-
-### 4、Mariadb配置主从复制
-#### 环境及版本
+## 环境及版本
 
 - Mariadb 10.4.6 下载可访问[官网](https://mariadb.org)
 - Windows7 64位
 
-#### 安装主数据库
+## 安装主数据库
 
-##### 配置文件
-```
+### 主数据库配置文件
+
+```xml
 [client]
-port	= 3310
-socket	= D:/Mariadb/mariadb_master/tmp/mysql.sock
+port = 3310
+socket = D:/Mariadb/mariadb_master/tmp/mysql.sock
 
 
 [mysqld]
-port	= 3310
-socket	= D:/Mariadb/mariadb_master/tmp/mysql.sock
+port = 3310
+socket = D:/Mariadb/mariadb_master/tmp/mysql.sock
 datadir = D:/Mariadb/mariadb_master/data
 server-id=1
 key_buffer_size = 384M
@@ -123,23 +32,27 @@ log-bin=mysql-bin
 lower_case_table_names=1
 ```
 
-##### 安装服务
-```
+### 主数据库安装服务
+
+```cmd
 mysqld.exe --install Mmariadb
 ```
 
-##### 数据库初始化
-```
+### 主数据库初始化
+
+```cmd
 mysql_install_db
 ```
 
-##### 启动数据库
-```
+### 启动主数据库
+
+```cmd
 net start Mmariadb
 ```
 
-##### 设置ROOT密码
-```
+### 设置主数据库ROOT密码
+
+```text
 1、mysql -uroot 
 2、use mysql;
 3、SET password for 'root'@'localhost'=password('root'); 
@@ -147,16 +60,18 @@ net start Mmariadb
 5、重启即可 - net stop Mmariadb |  net start Mmariadb
 ```
 
-##### 设置备份账号
-```
+### 设置主数据库备份账号
+
+```text
 1、登录主数据库
 2、grant replication slave on *.* to 'slaver'@'%' identified by '123456';
 3、flush privileges;
 4、重启
 ```
 
-##### 查看状态
-```
+### 查看主数据库状态
+
+```text
 1、登录
 2、show master status\G
 3、以下结果为正常
@@ -167,21 +82,21 @@ net start Mmariadb
 Binlog_Ignore_DB:
 ```
 
-#### 安装从数据库
+## 安装从数据库
 
-##### 配置文件
+### 从数据库配置文件
 
 主要修改端口、server-id、datadir及socket等相关参数
 
-```
+```xml
 [client]
-port	= 3311
-socket	= D:/Mariadb/mariadb_slave/tmp/mysql.sock
+port = 3311
+socket = D:/Mariadb/mariadb_slave/tmp/mysql.sock
 
 
 [mysqld]
-port	= 3311
-socket	= D:/Mariadb/mariadb_slave/tmp/mysql.sock
+port = 3311
+socket = D:/Mariadb/mariadb_slave/tmp/mysql.sock
 datadir = D:/Mariadb/mariadb_slave/data
 server-id=2
 key_buffer_size = 384M
@@ -196,23 +111,27 @@ log-bin=mysql-bin
 lower_case_table_names=1
 ```
 
-##### 安装服务
-```
+### 从数据库安装服务
+
+```cmd
 mysqld.exe --install Smariadb
 ```
 
-##### 数据库初始化
-```
+### 从数据库初始化
+
+```cmd
 mysql_install_db
 ```
 
-##### 启动数据库
-```
+### 启动从数据库
+
+```cmd
 net start Smariadb
 ```
 
-##### 设置ROOT密码
-```
+### 设置从数据库ROOT密码
+
+```text
 1、mysql -uroot 
 2、use mysql;
 3、SET password for 'root'@'localhost'=password('root'); 
@@ -220,8 +139,9 @@ net start Smariadb
 5、重启即可 - net stop Smariadb |  net start Smariadb
 ```
 
-##### 主从配置
-```
+## 主从配置
+
+```text
 1、登录从数据库
 2、stop slave；
 3、change master to master_host='127.0.0.1',master_user='slaver',master_port=3310,master_password='123456',master_log_file='mysql-bin.000003',master_log_pos=342;
@@ -291,8 +211,9 @@ Slave_SQL_Running: Yes
 这两个值都是YES即表示主从配置已经成功
 ```
 
-**参数解释**
-```
+参数解释
+
+```text
  1)master_host是指主服务器的IP
 
  2)master_user是指使用哪个用户登录主服务器
@@ -306,9 +227,9 @@ Slave_SQL_Running: Yes
  6)master_port是指主服务器的端口，默认是3306，如果不是3306则需要自己指定
 ```
 
-#### 注意问题
+## 注意问题
 
-```
+```text
 如果Slave_SQL_Running:No
 
 1、程序可能在slaves上进行了写操作

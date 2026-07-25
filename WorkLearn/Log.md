@@ -1,8 +1,10 @@
 # Log知识点
 
 ## Slf4j+Log4j2
+
 ### 引入Jar
-```
+
+```xml
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-api</artifactId>
@@ -28,9 +30,9 @@
 </dependency>
 ```
 
-
 ### log4j2.xml配置
-```
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
     status：这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出。
@@ -77,7 +79,8 @@
 ```
 
 ## logback无法产生每日日志
-```
+
+```xml
  <FileNamePattern>${LOG_HOME}/log-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
 ```
 

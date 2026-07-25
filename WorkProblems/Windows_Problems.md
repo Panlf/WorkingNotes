@@ -1,11 +1,12 @@
-## 问题列表_Windows
+# 问题列表_Windows
 
-### 1、Windows查找端口是否被占用
+## 1、Windows查找端口是否被占用
 
 今天使用`Hexo`的时候，本地`Hexo s`，然后访问`http:\\localhost:4000`，发现不能访问，猜想4000端口被占用。
 
 Widows下查找占用端口：
-```
+
+```cmd
 //查找占用端口4000
 netstat -ano | findstr "4000"  
 
@@ -14,7 +15,8 @@ TCP   127.0.0.1:4000  0.0.0.0:0    LISTENING       2084
 ```
 
 查看进程：
-```
+
+```cmd
 tasklist | findstr "2084" 
 
 //返回
@@ -22,33 +24,37 @@ FoxitProtect.exe   2084 Services    0      6,412 K
 ```
 
 杀掉进程：
-```
+
+```cmd
 taskkill /im /t /f FoxitProtect.exe 
 
 //也可以使用pid杀
 taskkill /pid pid /t /f
 ```
 
-### 2、Windows下更改npm全局模块和cache默认安装位置
+## 2、Windows下更改npm全局模块和cache默认安装位置
 
 1、在指定位置新建node_global、node_cache文件夹
 
 2、命令指定位置
-```
+
+```cmd
 npm config set prefix "XXX\node_global"
 npm config set cache "XXXs\node_cache"
 ```
 
 3、配置环境变量
-```
+
+```cmd
 NODE_PATH = XXX\Node\nodejs
 PATH = %NODE_PATH%\;%NODE_PATH%\node_modules;%NODE_PATH%\node_global;
 ```
 
-### 3、Windows批处理
+## 3、Windows批处理
 
 Maven有时候下载的包不全的，需要删除重下。但是很多包分布在不同的地方，一个个找太麻烦，就采用Windows的批处理方式
-```
+
+```cmd
 @echo off
 rem create by Panlf
   
@@ -63,23 +69,26 @@ pause
 ```
 
 下面是删除整个目录
-```
+
+```cmd
 @echo off
 setlocal enabledelayedexpansion
 ::set /p input_path=请输入要要操作的文件夹:
 ::echo 获取到的地址:%input_path%
 ::*.lastUpdated
 for /r C:\Users\Panlf\.m2\repository %%i in (*.lastUpdated) do (
-	set pan_name=%%~di
-	set del_name=%%~pi
-	set true_name=!pan_name!!del_name!
-	echo !true_name!
-	rd /s /q !true_name!
+ set pan_name=%%~di
+ set del_name=%%~pi
+ set true_name=!pan_name!!del_name!
+ echo !true_name!
+ rd /s /q !true_name!
 )
 pause
 ```
+
 有时候很多批处理会看不过来，就聚合一下
-```
+
+```cmd
 set /p a=enter num(1 open eclipse 2 start mysql 3 start mongodb 4 start ActiveMQ 5 start Zookeeper 6 start Redis):
 if %a%==1  start D:\Eclipse\java\eclipse-jee-neon-2-win32-x86_64
 if %a%==2  net start mysql
@@ -91,8 +100,9 @@ if %a%==6  call D:\Redis\stand\redis-server.exe
 else exit
 ```
 
-### 4、Windows Terminal美化
-```
+## 4、Windows Terminal美化
+
+```cmd
 # 允许运行Install-Module脚本
 set-executionpolicy remotesigned
 
